@@ -1,0 +1,29 @@
+{
+  "name": "reactgulptemplate",
+  "description": "React Gulp Template",
+  "version": "0.0.2",
+  "repository": "https://github.com/rxsegrxup/react-gulp-template",
+  "dependencies": {
+    "flux": "^2.0.1",
+    "keymirror": "~0.1.0",
+    "object-assign": "^1.0.0",
+    "react": "^0.12.0",
+    "request": "~2.48.0"
+  },
+  "devDependencies": {
+    "bower": "*",
+    "browserify": "^6.2.0",
+    "gulp": "*",
+    "gulp-cache": "*",
+    "gulp-connect": "*",
+    "gulp-jshint": "*",
+    "gulp-less": "*",
+    "gulp-react": "*",
+    "gulp-util": "*",
+    "gulp-watch": "*",
+    "jshint-stylish": "*",
+    "less": "*",
+    "reactify": "*",
+    "vinyl-source-stream": "*"
+  }
+}
