@@ -1,14 +1,179 @@
 /* add less styles below */
 
-body {
-    font-family: "Helvetica Neue";
+body, html {
+/*, section {*/
+    height: 100%;
 }
 
-.main {
-    width:90%;
-    margin: 0 auto;
-    h1 {
-        font-size: 20px;
-        color: #333;
+body {
+    font-family: "Helvetica Neue";
+    padding: 0;
+    margin: 0;
+}
+
+.w100 {
+    width: 100%;
+}
+
+.h100 {
+    height: 100%;
+}
+
+.norepeat {
+    background-repeat: no-repeat;
+}
+
+.bgx50 {
+    background-position-x: 50%;
+}
+
+.bgx100 {
+    background-position-x: 100%;
+}
+
+.bgx0 {
+    background-position-x: 0%;
+}
+
+.bgy100 {
+    background-position-y: 100%;
+}
+
+.bgy0 {
+    background-position-y: 0%;
+}
+
+section {
+    position: relative;
+    height: 800px;
+}
+
+.logo-cycle {
+    width: 210px;
+    height: 208px;
+    border: none;
+    outline: none;
+}
+
+.table {
+    position: relative;
+    display: table;
+    border: none;
+    outline: none;
+}
+
+.centered {
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.parallax-background {
+    background-image: url('/images/intro.png');
+    position: absolute;
+    top: 0;
+
+    -webkit-animation-name: none;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 2s;
+
+/*    -webkit-animation: background-move 1s infinite; /* Safari 4+ */
+/*    -moz-animation:    background-move 1s infinite; /* Fx 5+ */
+/*    -o-animation:      background-move 1s infinite; /* Opera 12+ */
+/*    animation:         background-move 1s steps(100) infinite; /* IE 10+, Fx 29+ */
+/*    animation: background-move 10s steps(10) infinite alternate;
+*/
+}
+
+section#about {
+    background-color: #EDEBEB;
+}
+
+.floating-div {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    display: inline-block;
+    padding: 10px;
+    background: #fafafa;
+}
+
+.scrollable {
+    height: 100%;
+    overflow-y: auto;
+    position: relative;
+}
+
+.about {
+    background-image: url('/images/about.png');
+    -webkit-animation-name: none;
+}
+
+.about2 {
+    -webkit-animation-name: background-move;
+    -webkit-animation-duration: 200s;
+    background-image: url('/images/about2.png');
+}
+
+.kingsslash_c {
+    -webkit-animation-duration: 25s;
+    -webkit-animation-direction: reverse;
+    background-image: url('/images/kingsslash_c.png');
+}
+
+.kingsslash_tl {
+    -webkit-animation-duration: 20s;
+    background-image: url('/images/kingsslash_tl.png');
+}
+
+.kingsslash_tr {
+    -webkit-animation-duration: 10s;
+    background-image: url('/images/kingsslash_tr.png');
+}
+
+.kingsslash_bl {
+    -webkit-animation-duration: 10s;
+    background-image: url('/images/kingsslash_bl.png');
+}
+
+.kingsslash_br {
+    -webkit-animation-duration: 20s;
+    background-image: url('/images/kingsslash_br.png');
+}
+
+@-webkit-keyframes background-move {
+    0%   { 
+        background-position: 0% 0%;
+    }
+    100%   { 
+        background-position: 0% 200%;
+    }
+}
+
+@-moz-keyframes background-move {
+    0%   { 
+        background-position: 0% 0%;
+    }
+    100%   { 
+        background-position: 0% 200%;
+    }
+}
+
+@-o-keyframes background-move {
+    0%   { 
+        background-position: 0% 0%;
+    }
+    100%   { 
+        background-position: 0% 200%;
+    }
+}
+
+@keyframes background-move {
+    0%   { 
+        background-position: 0% 0%;
+    }
+    100%   { 
+        background-position: 0% 200%;
     }
 }

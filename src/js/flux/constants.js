@@ -5,10 +5,13 @@
 var keyMirror = require('keymirror');
 
 module.exports = keyMirror({
-    SPINNER_STOP: null,
-    SPINNER_PLAY: null,
-    SPINNER_NEXT: null,
+    PARALLAX_DESTROY: null,
+    PARALLAX_EMIT: null,
+    PARALLAX_SETUP: null,
     SPINNER_ADD_IMAGE: null,
-    SPINNER_WAIT: null,
-    SPINNER_IDLE: null
+    SPINNER_IDLE: null,
+    SPINNER_NEXT: null,
+    SPINNER_PLAY: null,
+    SPINNER_STOP: null,
+    SPINNER_WAIT: null
 });

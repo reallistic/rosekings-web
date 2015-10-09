@@ -1,64 +1,90 @@
 /** @jsx React.DOM */
 "use strict";
-var React = require("react");
+var React = require("react"),
+    ParallaxStore = require('../stores/parallax'),
+    ParallaxActions = require('../actions/parallax'),
+    Resize = require('../mixins/resize');
 
 module.exports = React.createClass({
     displayName: "ParallaxBackground",
 
     propTypes: {
-        component: React.PropTypes.element.isRequired,
-        speed: React.PropTypes.number.isRequired,
-        xPos: React.PropTypes.string,
-        yPos: React.PropTypes.string
+        xSpeed: React.PropTypes.number,
+        ySpeed: React.PropTypes.number,
+        xPos: React.PropTypes.number,
+        yPos: React.PropTypes.number,
+        background: React.PropTypes.string,
+        enabled: React.PropTypes.bool,
+        scrollElement: React.PropTypes.element,
+        scrollElementName: React.PropTypes.string
     },
 
     getDefaultProps: function() {
         return {
-            xPos: null,
-            yPos: null
+            scrollElement: null,
+            scrollElementName: null,
+            xPos: 0,
+            yPos: 0,
+            ySpeed: 1,
+            xSpeed: 1,
+            enabled: true
         };
     },
 
     getInitialState: function() {
         return {
-            offset: {
-                top: 0,
-                left: 0
-            },
-            yPos: 0
+            yPos: 0,
+            xPos: 0
         };
     },
 
     componentWillUnmount: function() {
-        if(this.props.yPos !== null) {
-            window.removeEventListener('scroll', this.computeSway);
+        if(this.props.enabled){
+            ParallaxStore.unWatch(this.props.scrollElementName,
+                                  this.computeSway);
+            ParallaxStore.removeListener(ParallaxStore.EventType.READY,
+                                         this.initializeCallbacks);
         }
     },
 
     componentWillMount: function() {
-        if(this.props.yPos !== null) {
-            window.addEventListener('scroll', this.computeSway);
-        }
-        else {
-            this.setState({yPos: this.props.yPos});
+        if(this.props.enabled){
+            ParallaxStore.listen(ParallaxStore.EventType.READY,
+                                 this.initializeCallbacks);
         }
     },
 
-    componentDidMount: function() {
-        if(this.props.yPos !== null) {
-            var offset = this.getDOMElement().parent.offset.top;
-            this.setState({offset: offset});
+    initializeCallbacks: function() {
+        if(this.props.enabled){
+            ParallaxStore.watch(this.props.scrollElementName,
+                                this.computeSway);
         }
     },
 
     computeSway: function(e) {
-        var scroll = e.target.scroll,
-            top = scroll.top-this.state.offset.top,
-            yPos = top * this.props.speed;
-        this.setState({yPos: yPos});
+        if(!this.props.enabled) {
+            return;
+        }
+        var name = this.props.scrollElementName;
+        var scroll = ParallaxStore.getScrollPercent(name);
+        var yPos = (this.props.yPos + scroll.y) * this.props.ySpeed,
+            xPos = (this.props.xPos + scroll.x) * this.props.xSpeed;
+        //element.style.backgroundPositionY = yPos + '%';
+        //element.style.backgroundPositionX = xPos + '%';
+        this.setState({yPos: yPos, xPos: xPos});
     },
 
     render: function() {
-        
+        var style = {};
+        if(this.props.enabled) {
+            style.backgroundPositionY = this.state.yPos + '%';
+            style.backgroundPositionX = this.state.xPos + '%';
+        }
+        var classes = 'w100 h100 parallax-background ';
+        if(this.props.className){
+            classes += this.props.className;
+        }
+
+        return <div className={classes} style={style} />;
     }
 });

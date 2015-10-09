@@ -100,22 +100,14 @@ module.exports = React.createClass({
 
     render: function() {
         return (
-        <section id="home" data-speed="6" data-type="background">
-            <div className="background-sway hidden-sm hidden-xs"></div>
-            <div className="container">
-                <div className="centered">
+            <div className="w100 h100 table">
+                <div className="w100 h100 centered">
                     <a href="https://rose-llc.com" onMouseOver={this._onMouseOver}
                         onMouseOut={this._onMouseOut}>
-                        <img id="logo-cycle" src={this.state.image} width="210" height="208" border="0" />
+                        <img className={"logo-cycle"} src={this.state.image} />
                     </a>
                 </div>
             </div>
-            <div className="next">
-                <span data-type="nextsection" data-next="about" className="glyphicon glyphicon-chevron-down" />
-            </div>
-            <div className="window-shade" />
-        </section>
         );
-            
     }
 });
